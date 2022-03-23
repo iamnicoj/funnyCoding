@@ -37,12 +37,12 @@ namespace CalculatorProgram
         private static void processString(string root, string pending)
         {
             if (processed.IndexOf(root + pending)> -1){
-                Console.WriteLine("Found processed: " + root + pending);                
                 return;
             }
+
+            processed.Add(root + pending);
             
             if (root != null && root.Length > 0){
-                processed.Add(root);
                 if (root.SequenceEqual(root.Reverse()) && Int32.Parse(root) > highest)
                     highest = Int32.Parse(root);
             }
