@@ -6,7 +6,7 @@ namespace CalculatorProgram
     class Program
     {
         private static List<string> processed;
-        private static int highest;
+        private static int highestPalindrome;
         static void Main(string[] args)
         {
             Console.WriteLine("Enter integer (or exit):");
@@ -25,11 +25,11 @@ namespace CalculatorProgram
         public static string solution(string s){
 
             processed= new List<string>();
-            highest = -1;
+            highestPalindrome = -1;
 
             processString("", s);
-            if(highest != -1)
-                return highest.ToString();
+            if(highestPalindrome != -1)
+                return highestPalindrome.ToString();
 
             return "";
         }
@@ -40,11 +40,13 @@ namespace CalculatorProgram
                 return;
             }
 
-            processed.Add(root + pending);
+            processed.Add(root);
             
-            if (root != null && root.Length > 0){
-                if (root.SequenceEqual(root.Reverse()) && Int32.Parse(root) > highest)
-                    highest = Int32.Parse(root);
+            if (root != null && root.Length > 0 && 
+               root.SequenceEqual(root.Reverse()) && 
+               Int32.Parse(root) > highestPalindrome)
+            {
+                    highestPalindrome = Int32.Parse(root);
             }
 
             // Go through a string permutation for peding string
